@@ -9,10 +9,13 @@ function App() {
   let posts = '강남고기맛집';
 
 function changeTitle() {
+  var newArray = [...글제목];
+  newArray[0] = '여자 코트 추천';
   if(글제목[0] == '남자 코트 추천') {
-    글제목변경(['여자 코트 추천', '강남 우동 맛집', '파이썬 교육']);
+    글제목변경(newArray);
   }else{
-    글제목변경(['남자 코트 추천', '강남 우동 맛집', '파이썬 교육']);
+    newArray[0] = '남자 코트 추천';
+    글제목변경(newArray);
   }
   
 }
