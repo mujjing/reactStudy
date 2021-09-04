@@ -7,7 +7,19 @@ function App() {
   let [글제목, 글제목변경] = useState(['남자 코트 추천', '강남 우동 맛집', '파이썬 교육']);
   let [따봉, 따봉변경] = useState(0);
   let [modal, modal변경] = useState(false);
-  let posts = '강남고기맛집';
+  
+  var array = [2,3,4];
+  array.map(function(e){
+    return e * 2
+  });
+
+  function repeatUI() {
+    var array = [];
+    for (var i = 0; i < 3; i ++) {
+      array.push(<div>안녕</div>);
+    }
+    return array
+  }
 
 function changeTitle() {
   var newArray = [...글제목];
@@ -23,9 +35,9 @@ function changeTitle() {
 
 function callModal() {
   if (modal) {
-    modal변경(false)
+    modal변경(false);
   } else {
-    modal변경(true)
+    modal변경(true);
   }
 }
 
@@ -50,6 +62,19 @@ function callModal() {
         <p>2월 27일 발행</p>
         <hr/>
       </div>
+
+      {
+        글제목.map(function(a){
+          return ( 
+        <div className="list">
+          <h3>{ a }</h3>
+          <p>2월 20일 발행</p>
+          <hr/>
+        </div>
+          )
+        })
+      }
+
 
       {
         modal == true?
