@@ -6,6 +6,7 @@ function App() {
 
   let [글제목, 글제목변경] = useState(['남자 코트 추천', '강남 우동 맛집', '파이썬 교육']);
   let [따봉, 따봉변경] = useState(0);
+  let [modal, modal변경] = useState(false);
   let posts = '강남고기맛집';
 
 function changeTitle() {
@@ -18,6 +19,14 @@ function changeTitle() {
     글제목변경(newArray);
   }
   
+}
+
+function callModal() {
+  if (modal) {
+    modal변경(false)
+  } else {
+    modal변경(true)
+  }
 }
 
   return (
@@ -37,12 +46,16 @@ function changeTitle() {
         <hr/>
       </div>
       <div className="list">
-        <h3>{ 글제목[2] }</h3>
+        <h3><span onClick={()=>{ callModal() }}>{ 글제목[2] }</span></h3>
         <p>2월 27일 발행</p>
         <hr/>
       </div>
 
-      <Modal></Modal>
+      {
+        modal == true?
+        <Modal /> :
+        null
+      }
 
     </div>
   );
