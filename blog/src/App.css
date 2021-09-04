@@ -6,6 +6,13 @@ body {
   font-family: 'namusquare';
 }
 
+
+.modal {
+  margin-top: 20px;
+  padding:20px;
+  background: #eee;
+}
+
 .black_nav {
   background: black;
   width: 100%;
