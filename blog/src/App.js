@@ -49,7 +49,7 @@ function callModal() {
         <div style={ { color:'yellow', fontSize : '30px' } }>개발 Blog</div>
       </div>
       <button onClick={()=>{ changeTitle() }}>버튼</button>
-      <div className="list">
+      {/* <div className="list">
         <h3>{ 글제목[0] } <span onClick={()=>{ 따봉변경( 따봉 + 1 ) }}>👍</span> {따봉} </h3>
         <p>2월 17일 발행</p>
         <hr/>
@@ -63,7 +63,7 @@ function callModal() {
         <h3><span onClick={()=>{ callModal() }}>{ 글제목[2] }</span></h3>
         <p>2월 27일 발행</p>
         <hr/>
-      </div>
+      </div> */}
 
       {
         글제목.map(function(a, i){
@@ -76,9 +76,16 @@ function callModal() {
           )
         })
       }
+      <button onClick = {()=>{ callModal() }} >모달</button>
 
-      { 입력값 }
-      <input onChange = { (e)=>{ 입력값변경(e.target.value) } } />
+      <div className="publish">
+        <input onChange = {(e) => {입력값변경(e.target.value) }}/>
+        <button onClick = { () => {
+          var arrayCopy = [...글제목];
+          arrayCopy.unshift(입력값);
+          글제목변경( arrayCopy );
+        } }>저장</button>
+      </div>
 
       {
         modal == true?
