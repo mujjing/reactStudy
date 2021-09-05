@@ -8,6 +8,7 @@ function App() {
   let [따봉, 따봉변경] = useState(0);
   let [modal, modal변경] = useState(false);
   let [누른제목, 누른제목변경] = useState(0);
+  let [입력값, 입력값변경] = useState('');
   
   var array = [2,3,4];
   array.map(function(e){
@@ -64,14 +65,10 @@ function callModal() {
         <hr/>
       </div>
 
-      <button onClick={()=>{ 누른제목변경(0) }}>버튼 1</button>
-      <button onClick={()=>{ 누른제목변경(1) }}>버튼 2</button>
-      <button onClick={()=>{ 누른제목변경(2) }}>버튼 3</button>
-
       {
         글제목.map(function(a, i){
           return ( 
-        <div className="list">
+        <div className="list" key={i}>
           <h3 onClick={()=>{누른제목변경(i)}}>{ a }</h3>
           <p>2월 20일 발행</p>
           <hr/>
@@ -80,6 +77,8 @@ function callModal() {
         })
       }
 
+      { 입력값 }
+      <input onChange = { (e)=>{ 입력값변경(e.target.value) } } />
 
       {
         modal == true?
