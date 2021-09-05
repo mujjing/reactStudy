@@ -6,7 +6,22 @@ function App() {
 
   let [글제목, 글제목변경] = useState(['남자 코트 추천', '강남 우동 맛집', '파이썬 교육']);
   let [따봉, 따봉변경] = useState(0);
-  let posts = '강남고기맛집';
+  let [modal, modal변경] = useState(false);
+  let [누른제목, 누른제목변경] = useState(0);
+  let [입력값, 입력값변경] = useState('');
+  
+  var array = [2,3,4];
+  array.map(function(e){
+    return e * 2
+  });
+
+  function repeatUI() {
+    var array = [];
+    for (var i = 0; i < 3; i ++) {
+      array.push(<div>안녕</div>);
+    }
+    return array
+  }
 
 function changeTitle() {
   var newArray = [...글제목];
@@ -18,6 +33,14 @@ function changeTitle() {
     글제목변경(newArray);
   }
   
+}
+
+function callModal() {
+  if (modal) {
+    modal변경(false);
+  } else {
+    modal변경(true);
+  }
 }
 
   return (
@@ -37,22 +60,41 @@ function changeTitle() {
         <hr/>
       </div>
       <div className="list">
-        <h3>{ 글제목[2] }</h3>
+        <h3><span onClick={()=>{ callModal() }}>{ 글제목[2] }</span></h3>
         <p>2월 27일 발행</p>
         <hr/>
       </div>
 
-      <Modal></Modal>
+      {
+        글제목.map(function(a, i){
+          return ( 
+        <div className="list" key={i}>
+          <h3 onClick={()=>{누른제목변경(i)}}>{ a }</h3>
+          <p>2월 20일 발행</p>
+          <hr/>
+        </div>
+          )
+        })
+      }
+
+      { 입력값 }
+      <input onChange = { (e)=>{ 입력값변경(e.target.value) } } />
+
+      {
+        modal == true?
+        <Modal 글제목 = { 글제목 } 누른제목 = {누른제목} /> :
+        null
+      }
 
     </div>
   );
 }
 
-function Modal() {
+function Modal(props) {
   return (
     <div>
       <div className="modal">
-        <h2>제목</h2>
+        <h2>제목 : { props.글제목[props.누른제목] }</h2>
         <p>날짜</p>
         <p>상세내용</p>
       </div>
