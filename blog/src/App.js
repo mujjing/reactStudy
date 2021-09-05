@@ -7,6 +7,7 @@ function App() {
   let [글제목, 글제목변경] = useState(['남자 코트 추천', '강남 우동 맛집', '파이썬 교육']);
   let [따봉, 따봉변경] = useState(0);
   let [modal, modal변경] = useState(false);
+  let [누른제목, 누른제목변경] = useState(0);
   
   var array = [2,3,4];
   array.map(function(e){
@@ -63,11 +64,15 @@ function callModal() {
         <hr/>
       </div>
 
+      <button onClick={()=>{ 누른제목변경(0) }}>버튼 1</button>
+      <button onClick={()=>{ 누른제목변경(1) }}>버튼 2</button>
+      <button onClick={()=>{ 누른제목변경(2) }}>버튼 3</button>
+
       {
-        글제목.map(function(a){
+        글제목.map(function(a, i){
           return ( 
         <div className="list">
-          <h3>{ a }</h3>
+          <h3 onClick={()=>{누른제목변경(i)}}>{ a }</h3>
           <p>2월 20일 발행</p>
           <hr/>
         </div>
@@ -78,7 +83,7 @@ function callModal() {
 
       {
         modal == true?
-        <Modal 글제목 = { 글제목 }/> :
+        <Modal 글제목 = { 글제목 } 누른제목 = {누른제목} /> :
         null
       }
 
@@ -90,7 +95,7 @@ function Modal(props) {
   return (
     <div>
       <div className="modal">
-        <h2>제목 : { props.글제목[1] }</h2>
+        <h2>제목 : { props.글제목[props.누른제목] }</h2>
         <p>날짜</p>
         <p>상세내용</p>
       </div>
